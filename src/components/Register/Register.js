@@ -2,17 +2,28 @@ import React, { useContext, useRef } from 'react';
 import { AuthContext } from '../../contexts/UserContext/UserContext';
 
 const Register = () => {
-    const { user, createAccountWithEmailPass } = useContext(AuthContext)
+    const { createAccountWithEmailPass, updateUserProfile } = useContext(AuthContext)
+    const firstNameRef = useRef('')
+    const lastNameRef = useRef('')
+    const photoUrlRef = useRef('')
     const emailRef = useRef('')
     const passwordRef = useRef('')
-    console.log(user);
     const handleSubmit = (e) => {
         e.preventDefault()
-        const email = emailRef.current.value
-        const password = passwordRef.current.value
-        console.log(email, password, user);
+        const email = emailRef.current.value;
+        const password = passwordRef.current.value;
+        const displayName = firstNameRef.current.value + ' ' + lastNameRef.current.value;
+        const photoURL = photoUrlRef.current.value;
+        const profileDetailsTOUpdate = { displayName, photoURL };
+        console.log(profileDetailsTOUpdate);
         createAccountWithEmailPass(email, password)
             .then((result) => {
+                updateUserProfile(profileDetailsTOUpdate)
+                    .then((result) => {
+                        alert('user created')
+                    }).catch(error => {
+                        alert(error.message)
+                    })
                 alert('user created')
             }).catch(error => {
                 alert(error.message)
@@ -32,19 +43,19 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">First Name</span>
                                 </label>
-                                <input type="text" placeholder="First Name" className="input input-bordered" />
+                                <input ref={firstNameRef} type="text" placeholder="First Name" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Last Name</span>
                                 </label>
-                                <input type="text" placeholder="Last Name" className="input input-bordered" />
+                                <input ref={lastNameRef} type="text" placeholder="Last Name" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Photo Url</span>
                                 </label>
-                                <input type="url" placeholder="Photo Url" className="input input-bordered" />
+                                <input ref={photoUrlRef} type="url" placeholder="Photo Url" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">

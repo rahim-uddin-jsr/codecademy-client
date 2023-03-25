@@ -5,6 +5,7 @@ const Login = () => {
     const { user, loginWithEmailPass } = useContext(AuthContext)
     const emailRef = useRef('')
     const passwordRef = useRef('')
+    console.log(user);
     const handleSubmit = (e) => {
         e.preventDefault()
         const email = emailRef.current.value;
@@ -36,7 +37,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input ref={passwordRef} type="text" placeholder="password" className="input input-bordered" />
+                            <input ref={passwordRef} type="password" placeholder="password" className="input input-bordered" />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
