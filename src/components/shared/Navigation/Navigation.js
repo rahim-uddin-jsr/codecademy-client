@@ -30,9 +30,6 @@ const Navigation = () => {
                         <li><NavLink to='/register'>Register</NavLink></li>
                     </ul>
                 </div>
-                <div className="tooltip tooltip-left" data-tip="hello">
-                    <button className="btn">Left</button>
-                </div>
                 {/* user Profile picture shown */}
                 {!user?.uid ?
                     <div className="dropdown dropdown-end">

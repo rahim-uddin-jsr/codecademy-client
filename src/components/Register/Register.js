@@ -1,13 +1,15 @@
 import React, { useContext, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext/UserContext';
 
 const Register = () => {
-    const { createAccountWithEmailPass, updateUserProfile } = useContext(AuthContext)
+    const { createAccountWithEmailPass, updateUserProfile, logOut } = useContext(AuthContext)
     const firstNameRef = useRef('')
     const lastNameRef = useRef('')
     const photoUrlRef = useRef('')
     const emailRef = useRef('')
     const passwordRef = useRef('')
+    const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
         const email = emailRef.current.value;
@@ -20,11 +22,15 @@ const Register = () => {
             .then((result) => {
                 updateUserProfile(profileDetailsTOUpdate)
                     .then((result) => {
+                        logOut().then(() => {
+                            alert('please login first')
+                            navigate('/login')
+                        })
                         alert('user created')
                     }).catch(error => {
                         alert(error.message)
                     })
-                alert('user created')
+                alert('user profile Updated')
             }).catch(error => {
                 alert(error.message)
             })

@@ -1,4 +1,5 @@
 import React, { useContext, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext/UserContext';
 
 const Login = () => {
@@ -6,6 +7,7 @@ const Login = () => {
     const emailRef = useRef('')
     const passwordRef = useRef('')
     console.log(user);
+    const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
         const email = emailRef.current.value;
@@ -14,6 +16,7 @@ const Login = () => {
         loginWithEmailPass(email, password)
             .then((result) => {
                 alert('user login successful')
+                navigate('/')
             }).catch(error => {
                 alert(error.message)
             })
