@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext/UserContext';
 
 const Register = () => {
-    const { createAccountWithEmailPass, updateUserProfile, logOut } = useContext(AuthContext)
+    const { createAccountWithEmailPass, updateUserProfile, sendVerificationMail, logOut } = useContext(AuthContext)
     const firstNameRef = useRef('')
     const lastNameRef = useRef('')
     const photoUrlRef = useRef('')
@@ -30,6 +30,11 @@ const Register = () => {
                     }).catch(error => {
                         alert(error.message)
                     })
+                sendVerificationMail().then(() => {
+                    alert('Verification Mail send. Please verify your email to sign in')
+                }).catch(error => {
+                    alert(error.message)
+                })
                 alert('user profile Updated')
             }).catch(error => {
                 alert(error.message)
@@ -74,9 +79,6 @@ const Register = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input ref={passwordRef} type="password" placeholder="password" className="input input-bordered" />
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
                             </div>
                             <div className="form-control mt-6">
                                 <button type='submit' className="btn btn-primary">Register</button>

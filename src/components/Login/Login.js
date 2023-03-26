@@ -1,13 +1,12 @@
 import React, { useContext, useRef } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext/UserContext';
 
 const Login = () => {
-    const { user, loginWithEmailPass, logInWithGoogle, logInWithGithub } = useContext(AuthContext)
+    const { user, loginWithEmailPass, resetPasswordWithEmail, logInWithGoogle, logInWithGithub } = useContext(AuthContext)
     const emailRef = useRef('')
     const passwordRef = useRef('')
-    console.log(user);
     const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -18,6 +17,7 @@ const Login = () => {
             .then((result) => {
                 alert('user login successful')
                 navigate('/')
+                console.log(user);
             }).catch(error => {
                 alert(error.message)
             })
@@ -40,7 +40,16 @@ const Login = () => {
             }).catch(error => {
                 alert(error.message)
             })
-
+    }
+    const handleSendResetEmail = () => {
+        const email = emailRef.current.value;
+        email ?
+            resetPasswordWithEmail(email).then(() => {
+                alert('Reset Password Email Send successful')
+            }).catch((e) => {
+                alert(e.message)
+            }) :
+            alert("please provide Email first")
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -64,7 +73,7 @@ const Login = () => {
                                 </label>
                                 <input ref={passwordRef} type="password" placeholder="password" className="input input-bordered" />
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <p className="text-left ">Forgot password? <span className='label-text-alt link link-hover text-purple-600' onClick={handleSendResetEmail}> Send reset email!</span></p>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
@@ -72,9 +81,9 @@ const Login = () => {
                             </div>
                             <p>or</p>
                         </form>
-                        <div className=" w-full mx-auto mb-5 flex flex-col">
-                            <button onClick={handleGoogleSignIn} className="btn mb-2  bg-white hover:bg-gray-100 text-gray-800 active"><FaGoogle className='text-xl mr-1' />  Google Sign In</button>
-                            <button on onClick={handleGithubSignIn} className="btn bg-white hover:bg-gray-100 text-gray-800 active"><FaGithub className='text-xl mr-1' />  GithUb Sign In</button>
+                        <div className="w-full mx-auto mb-5 flex flex-col">
+                            <button onClick={handleGoogleSignIn} className="btn mb-2  bg-white hover:bg-gray-100 text-gray-800 active"><FaGoogle className='text-xl mr-3' />  Google Sign In</button>
+                            <button onClick={handleGithubSignIn} className="btn bg-white hover:bg-gray-100 text-gray-800 active"><FaGithub className='text-xl mr-3' />  GithUb Sign In</button>
                         </div>
                     </div>
                 </div>
