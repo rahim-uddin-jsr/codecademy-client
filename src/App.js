@@ -3,8 +3,11 @@ import './App.css';
 import router from './components/routes/routes';
 
 function App() {
+  if (localStorage.theme === 'dark') {
+    document.documentElement.classList.add('dark')
+  }
   return (
-    <div className="App">
+    <div className="App h-screen dark:bg-slate-500 dark:text-white">
       <RouterProvider router={router}></RouterProvider>
     </div>
   );
