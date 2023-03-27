@@ -7,7 +7,7 @@ function App() {
     document.documentElement.classList.add('dark')
   }
   return (
-    <div className="App h-screen dark:bg-slate-500 dark:text-white">
+    <div className="App">
       <RouterProvider router={router}></RouterProvider>
     </div>
   );
