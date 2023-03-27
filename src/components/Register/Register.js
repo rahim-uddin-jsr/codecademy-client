@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext/UserContext';
 
 const Register = () => {
@@ -48,8 +48,8 @@ const Register = () => {
                         <h1 className="text-5xl font-bold">Register now!</h1>
                         <p className="py-6"></p>
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form className="card-body" onSubmit={handleSubmit}>
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 dark:bg-slate-200">
+                        <form className="card-body dark:text-black" onSubmit={handleSubmit}>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">First Name</span>
@@ -83,6 +83,7 @@ const Register = () => {
                             <div className="form-control mt-6">
                                 <button type='submit' className="btn btn-primary">Register</button>
                             </div>
+                            <p>Already have an account? <Link className='text-primary link' to='/login'>Please login</Link></p>
                         </form>
                     </div>
                 </div>

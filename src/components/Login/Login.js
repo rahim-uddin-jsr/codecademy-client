@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext/UserContext';
 
 const Login = () => {
@@ -58,9 +58,9 @@ const Login = () => {
                     <h1 className="text-5xl font-bold">Login now!</h1>
                     <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                 </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 dark:bg-slate-200">
                     <div className="card-body">
-                        <form onSubmit={handleSubmit} className="">
+                        <form onSubmit={handleSubmit} className='dark:text-black'>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -84,6 +84,7 @@ const Login = () => {
                         <div className="w-full mx-auto mb-5 flex flex-col">
                             <button onClick={handleGoogleSignIn} className="btn mb-2  bg-white hover:bg-gray-100 text-gray-800 active"><FaGoogle className='text-xl mr-3' />  Google Sign In</button>
                             <button onClick={handleGithubSignIn} className="btn bg-white hover:bg-gray-100 text-gray-800 active"><FaGithub className='text-xl mr-3' />  GithUb Sign In</button>
+                            <p>Don't Have account? <Link className='text-primary link' to='/register'>Please Register</Link></p>
                         </div>
                     </div>
                 </div>
