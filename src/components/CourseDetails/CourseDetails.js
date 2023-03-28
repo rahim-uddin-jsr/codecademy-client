@@ -1,12 +1,15 @@
 import React from 'react';
 import { FaCheck, FaRegStar, FaStar } from 'react-icons/fa';
 import Rating from 'react-rating';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
+import ReactToPdf from "react-to-pdf";
 
 const CourseDetails = () => {
+
     const details = useLoaderData()
     const { id, title, thumbImg, tutorName, rating, totalRating, totalStudentss, preRequirements, shortDescription, isBestSallier, topicsLearn } = details;
     return (
+
         <div className="mt-10 w-[530px] mx-auto relative text-start card card-compact w-full rounded-none p-1 bg-base-100 shadow-xl">
             <figure><img className='w-full' src={thumbImg} alt="Shoes" /></figure>
             <div className="p-2 ">
@@ -18,7 +21,14 @@ const CourseDetails = () => {
                     <Rating className='text-yellow-500' initialRating={rating} readonly={true} emptySymbol={<FaRegStar />} fullSymbol={<FaStar />} /> ({totalRating})
                 </p>
                 {isBestSallier &&
-                    <span className='bg-yellow-600 mt text-white p-1'>Best Seller</span>}
+                    <>
+                        <span className='bg-yellow-600 mt text-white p-1'>Best Seller</span>
+                        <br />
+                    </>
+                }
+                <Link to={`/premium-access/${id}`} className="btn btn-primary btn-xs mt-5 sm:btn-sm md:btn-md lg:btn-lg">Get premium Access</Link>
+
+
                 {
 
                     topicsLearn &&
