@@ -6,6 +6,7 @@ const auth = getAuth(app)
 export const AuthContext = createContext(auth)
 const UserContext = ({ children }) => {
     const [user, setUser] = useState({})
+    const [loading, setLoading] = useState(false)
 
     const createAccountWithEmailPass = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -35,13 +36,16 @@ const UserContext = ({ children }) => {
     }
 
     useEffect(() => {
+        setLoading(true)
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
+            setLoading(false)
         })
         return unsubscribe;
     }, [])
 
     const authInfo = {
+        loading,
         createAccountWithEmailPass,
         logInWithGoogle,
         logInWithGithub,
