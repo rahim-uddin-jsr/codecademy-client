@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from "../../../images/icons8-learning-64.png";
-import { FaSignInAlt, FaUserAlt } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
 import { AuthContext } from '../../../contexts/UserContext/UserContext';
 
 const Navigation = () => {

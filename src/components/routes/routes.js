@@ -10,6 +10,7 @@ import Login from "../Login/Login";
 import PremiumAccess from "../PremiumAccessPremiumAccess/PremiumAccess";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
+import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 
 const router = createBrowserRouter([{
     path: '/', element: <Main />, children: [
@@ -34,7 +35,7 @@ const router = createBrowserRouter([{
         { path: '/course/:id', loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`), element: <CourseDetails />, },
         { path: '/blog', element: <Blog /> },
         { path: '/frequently-asked-question', element: <Faq /> },
-        { path: '/premium-access/:id', loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`), element: <PremiumAccess /> },
+        { path: '/premium-access/:id', loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`), element: <PrivateRoutes><PremiumAccess /></PrivateRoutes> },
     ]
 }])
 export default router;
