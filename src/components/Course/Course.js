@@ -4,7 +4,7 @@ import Rating from 'react-rating';
 import { Link } from 'react-router-dom';
 
 const Course = ({ course }) => {
-    const { id, title, thumbImg, tutorName, rating, totalRating, totalStudentss, isBestSallier } = course;
+    const { id, title, thumbImg, tutorName, rating, totalRating, isBestSallier } = course;
     return (
         <Link to={`/course/${id}`}>
             <div className="h-[345px] cursor-pointer relative text-start card card-compact w-[240px] rounded-none p-1 bg-base-100 shadow-xl">

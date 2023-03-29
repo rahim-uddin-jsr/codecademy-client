@@ -1,9 +1,12 @@
 import React, { useContext, useRef } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext/UserContext';
 
 const Login = () => {
+    const location = useLocation()
+    let from = location.state.from.pathname || '/';
+    console.log(location.state);
     const { user, loginWithEmailPass, resetPasswordWithEmail, logInWithGoogle, logInWithGithub } = useContext(AuthContext)
     const emailRef = useRef('')
     const passwordRef = useRef('')
@@ -16,7 +19,7 @@ const Login = () => {
         loginWithEmailPass(email, password)
             .then((result) => {
                 alert('user login successful')
-                navigate('/')
+                navigate(from)
                 console.log(user);
             }).catch(error => {
                 alert(error.message)

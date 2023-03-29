@@ -1,12 +1,12 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import loadingImg from '../../../images/loading.svg'
 import { AuthContext } from '../../../contexts/UserContext/UserContext';
 
 const PrivateRoutes = ({ children }) => {
     const { user, loading } = useContext(AuthContext)
-    // const navigate = useNavigate()
+    const location = useLocation()
     if (loading) {
         return <div className='w-full'>
             <img className='text-center mx-auto' src={loadingImg} alt="" />
@@ -18,7 +18,7 @@ const PrivateRoutes = ({ children }) => {
         return children
     }
 
-    return <Navigate to='/login'></Navigate>
+    return <Navigate to='/login' state={{ from: location }} replace></Navigate>
 
 };
 

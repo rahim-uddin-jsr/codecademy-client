@@ -15,7 +15,7 @@ const SideBar = () => {
             <h1 className='text-2xl mb-5 font-semibold'>Show courses by category</h1>
             <ul className="menu bg-base-100">
                 {
-                    categories?.map(category => <li><Link to={`/courses/category/${category.name}`}>{category.name}</Link></li>)
+                    categories?.map(category => <li key={category.id}><Link to={`/courses/category/${category.name}`}>{category.name}</Link></li>)
                 }
                 <li><Link to='/courses'>AllCourses</Link></li>
 
